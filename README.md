@@ -73,3 +73,7 @@ For beginner web developers, building a quiz app is a perfect starter project to
 
 Conclusion
 This quiz application project is a foundational web development exercise that combines HTML, CSS, and JavaScript into a functional, interactive tool. It serves both as a learning experience and a practical utility, showcasing how core web technologies can be used to create real-world applications. The skills gained in building this project are directly transferable to larger applications, UI design, game development, and educational platforms.
+
+output:
+
+http://127.0.0.1:5500/New%20folder/Quiz%20App.html
