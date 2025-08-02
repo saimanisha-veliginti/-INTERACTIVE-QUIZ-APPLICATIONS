@@ -193,4 +193,6 @@ It demonstrates the ability to create a fully functional application using only 
 
  Conclusion
 In summary, this project was a front-end-focused quiz application built using HTML, CSS, and JavaScript in Visual Studio Code. The app includes scoring, dynamic question handling, and instant feedback, offering a professional and engaging user experience. It serves as a great starting point for educational tools, training assessments, and web-based games, and can be expanded further to include features like timers, backend integration, high score tracking, or multiplayer modes. The simplicity of the technology stack makes it ideal for beginners, while its functionality allows for real-world implementation and creative extensions
+in this project we can create this as 2 different files
+
 
