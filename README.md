@@ -75,9 +75,8 @@ For beginner web developers, building a quiz app is a perfect starter project to
 Conclusion
 This quiz application project is a foundational web development exercise that combines HTML, CSS, and JavaScript into a functional, interactive tool. It serves both as a learning experience and a practical utility, showcasing how core web technologies can be used to create real-world applications. The skills gained in building this project are directly transferable to larger applications, UI design, game development, and educational platforms.
 
-output:
-
-http://127.0.0.1:5500/New%20folder/Quiz%20App.html
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 2.POLISHED APP WITH SCORING AND DYNAMIC:
 The core task in this project was to design and build a dynamic, interactive quiz application that allows users to:
@@ -195,5 +194,3 @@ It demonstrates the ability to create a fully functional application using only 
  Conclusion
 In summary, this project was a front-end-focused quiz application built using HTML, CSS, and JavaScript in Visual Studio Code. The app includes scoring, dynamic question handling, and instant feedback, offering a professional and engaging user experience. It serves as a great starting point for educational tools, training assessments, and web-based games, and can be expanded further to include features like timers, backend integration, high score tracking, or multiplayer modes. The simplicity of the technology stack makes it ideal for beginners, while its functionality allows for real-world implementation and creative extensions
 
-OUTPUT:
-file:///C:/Users/HP/OneDrive/Desktop/DIP%20python/New%20folder/quiz%20app%20polished/polish.html
