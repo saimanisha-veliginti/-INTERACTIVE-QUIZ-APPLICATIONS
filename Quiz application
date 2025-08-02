@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Quiz App</h1>
+    <div id="question-container">
+      <div id="question">Question text</div>
+      <div id="answer-buttons" class="btn-grid"></div>
+    </div>
+    <div id="feedback"></div>
+    <div class="controls">
+      <button id="next-btn" class="next-btn btn">Next</button>
+      <div id="score">Score: 0</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.quiz-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.btn-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #2980b9;
+}
+
+.correct {
+  background-color: #2ecc71;
+}
+
+.wrong {
+  background-color: #e74c3c;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+#feedback {
+  margin-top: 10px;
+  font-weight: bold;
+}
+const questions = [
+  {
+    question: "What is the capital of France?",
+    answers: [
+      { text: "Berlin", correct: false },
+      { text: "Madrid", correct: false },
+      { text: "Paris", correct: true },
+      { text: "London", correct: false }
+    ]
+  },
+  {
+    question: "Which language is used for web apps?",
+    answers: [
+      { text: "Python", correct: false },
+      { text: "JavaScript", correct: true },
+      { text: "C++", correct: false },
+      { text: "Java", correct: false }
+    ]
+  },
+  {
+    question: "What does HTML stand for?",
+    answers: [
+      { text: "Hyper Text Markup Language", correct: true },
+      { text: "Home Tool Markup Language", correct: false },
+      { text: "Hyperlinks and Text Markup Language", correct: false },
+      { text: "None of the above", correct: false }
+    ]
+  }
+];
+
+const questionContainer = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtons = document.getElementById('answer-buttons');
+const nextButton = document.getElementById('next-btn');
+const feedback = document.getElementById('feedback');
+const scoreDisplay = document.getElementById('score');
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startQuiz() {
+  currentQuestionIndex = 0;
+  score = 0;
+  scoreDisplay.textContent = `Score: ${score}`;
+  nextButton.style.display = 'none';
+  showQuestion();
+}
+
+function showQuestion() {
+  resetState();
+  const currentQuestion = questions[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+
+  currentQuestion.answers.forEach(answer => {
+    const button = document.createElement('button');
+    button.textContent = answer.text;
+    button.classList.add('btn');
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+    button.addEventListener('click', selectAnswer);
+    answerButtons.appendChild(button);
+  });
+}
+
+function resetState() {
+  feedback.textContent = '';
+  nextButton.style.display = 'none';
+  answerButtons.innerHTML = '';
+}
+
+function selectAnswer(e) {
+  const selectedButton = e.target;
+  const correct = selectedButton.dataset.correct === "true";
+
+  if (correct) {
+    selectedButton.classList.add('correct');
+    feedback.textContent = "Correct!";
+    score++;
+    scoreDisplay.textContent = `Score: ${score}`;
+  } else {
+    selectedButton.classList.add('wrong');
+    feedback.textContent = "Wrong!";
+  }
+
+  Array.from(answerButtons.children).forEach(button => {
+    button.disabled = true;
+    if (button.dataset.correct === "true") {
+      button.classList.add('correct');
+    }
+  });
+
+  nextButton.style.display = 'inline-block';
+}
+
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    showScore();
+  }
+});
+
+function showScore() {
+  resetState();
+  questionElement.textContent = `You scored ${score} out of ${questions.length}!`;
+  nextButton.textContent = 'Restart';
+  nextButton.style.display = 'inline-block';
+  nextButton.onclick = startQuiz;
+}
+
+startQuiz();
+
